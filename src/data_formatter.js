@@ -189,11 +189,12 @@ export default class DataFormatter {
       let lowestValue = Number.MAX_VALUE;
 
       this.ctrl.series.forEach((point) => {
+        const decodedGeohash = decodeGeoHash(point.geohash);
         const dataValue = {
-          key: point.key,
+          key: point.geohash,
           locationName: point.name,
-          locationLatitude: point.latitude,
-          locationLongitude: point.longitude,
+          locationLatitude: decodedGeohash.latitude,
+          locationLongitude: decodedGeohash.longitude,
           value: (point.value !== undefined) ? point.value : 1,
           valueRounded: 0
         };

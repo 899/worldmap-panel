@@ -215,11 +215,12 @@ System.register(['lodash', './geohash'], function (_export, _context) {
               var lowestValue = Number.MAX_VALUE;
 
               this.ctrl.series.forEach(function (point) {
+                var decodedGeohash = decodeGeoHash(point.geohash);
                 var dataValue = {
-                  key: point.key,
+                  key: point.geohash,
                   locationName: point.name,
-                  locationLatitude: point.latitude,
-                  locationLongitude: point.longitude,
+                  locationLatitude: decodedGeohash.latitude,
+                  locationLongitude: decodedGeohash.longitude,
                   value: point.value !== undefined ? point.value : 1,
                   valueRounded: 0
                 };
